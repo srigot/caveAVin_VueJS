@@ -61,7 +61,7 @@ export default {
         finTemp: '',
         categorie: '',
         appellation: '',
-        emplacement: []
+        emplacements: []
       },
       error: {
         nom: '',

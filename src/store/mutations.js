@@ -17,7 +17,7 @@ export default {
     state.filterAll = !state.filterAll
   },
   [types.AJOUTER_EMPLACEMENT] (state, {vin, rangee, colonne}) {
-    vin.emplacement.push({rangee, colonne})
+    vin.emplacements.push({rangee, colonne})
 /*    // Recherche du vin
     var lastIndex = state.items.lastIndexOf(vin)
     if (lastIndex !== -1) {
@@ -35,10 +35,10 @@ export default {
     // Recherche du vin
     var lastIndex = state.items.lastIndexOf(vin)
     if (lastIndex !== -1) {
-      if (state.items[lastIndex].emplacement !== undefined) {
-        var lastIndexEmplacement = state.items[lastIndex].emplacement.lastIndexOf(emplacement)
+      if (state.items[lastIndex].emplacements !== undefined) {
+        var lastIndexEmplacement = state.items[lastIndex].emplacements.lastIndexOf(emplacement)
         if (lastIndexEmplacement !== -1) {
-          state.items[lastIndex].emplacement.splice(lastIndexEmplacement, 1)
+          state.items[lastIndex].emplacements.splice(lastIndexEmplacement, 1)
         }
       }
     }
