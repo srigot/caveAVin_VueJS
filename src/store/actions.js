@@ -45,10 +45,11 @@ export default {
   toogleFiltreAll ({commit}) {
     commit(types.TOOGLE_FILTREALL)
   },
-  ajouterEmplacement ({commit}, {vin, rangee, colonne}) {
+  ajouterEmplacement ({commit}, {vin, emplacement}) {
     return new Promise((resolve, reject) => {
-      commit(types.AJOUTER_EMPLACEMENT, {vin, rangee, colonne})
-      backend.updateVin(vin).then(result => {
+      backend.addEmplacement(vin, emplacement).then(result => {
+        // TODO Gerer le null pointeur
+        commit(types.UPDATE_VIN, result.body.vin)
         resolve()
       }, err => {
         // TODO A GERER

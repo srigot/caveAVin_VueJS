@@ -32,7 +32,7 @@ export default {
   components: {
     btnTous
   },
-  created () {
+  beforeCreate () {
     this.$store.dispatch('initListe')
   }
 }

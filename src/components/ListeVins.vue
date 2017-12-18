@@ -42,8 +42,8 @@ export default {
       this.current = item
       this.$root.$emit('show::modal', 'modalSupprEmpl')
     },
-    validerAjoutEmplacement ({rangee, colonne}) {
-      this.ajouterEmplacement({vin: this.current, rangee, colonne}).then((result) => {
+    validerAjoutEmplacement (emplacement) {
+      this.ajouterEmplacement({vin: this.current, emplacement}).then((result) => {
         this.$root.$emit('show::hide', 'modalAjoutEmpl')
       })
     },

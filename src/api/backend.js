@@ -3,13 +3,13 @@ import Vue from 'vue'
 /**
  * Mocking client/serveur
  */
-const URL = 'https://meancave.herokuapp.com/vins'
+const URL = 'https://meancave.herokuapp.com/'
 
 export default {
   getListe () {
     return new Promise((resolve, reject) => {
       // Appel de l'API
-      Vue.http.get(URL).then(response => {
+      Vue.http.get(URL + 'vins').then(response => {
         resolve(response.body)
       }, err => {
         reject(err)
@@ -18,7 +18,7 @@ export default {
   },
   deleteVin (vin) {
     return new Promise((resolve, reject) => {
-      Vue.http.delete(URL + '/' + vin._id).then(response => {
+      Vue.http.delete(URL + 'vin/' + vin._id).then(response => {
         resolve()
       }, err => {
         reject(err)
@@ -28,7 +28,7 @@ export default {
   addVin (vin) {
     return new Promise((resolve, reject) => {
       // Appel de l'API
-      Vue.http.post(URL, vin).then(response => {
+      Vue.http.post(URL + 'vins', vin).then(response => {
         resolve(response)
       }, err => {
         reject(err)
@@ -37,8 +37,17 @@ export default {
   },
   updateVin (vin) {
     return new Promise((resolve, reject) => {
-      Vue.http.put(URL + '/' + vin._id, vin).then(response => {
+      Vue.http.put(URL + 'vin/' + vin._id, vin).then(response => {
         resolve()
+      }, err => {
+        reject(err)
+      })
+    })
+  },
+  addEmplacement (vin, emplacement) {
+    return new Promise((resolve, reject) => {
+      Vue.http.post(URL + 'vin/' + vin._id + '/emplacement', emplacement).then(response => {
+        resolve(response)
       }, err => {
         reject(err)
       })

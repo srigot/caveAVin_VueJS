@@ -13,23 +13,14 @@ export default {
       state.items.splice(lastIndex, 1)
     }
   },
+  [types.UPDATE_VIN] (state, v) {
+    var index = state.items.findIndex(item => {
+      return (item._id === v._id)
+    })
+    state.items.splice(index, 1, v)
+  },
   [types.TOOGLE_FILTREALL] (state) {
     state.filterAll = !state.filterAll
-  },
-  [types.AJOUTER_EMPLACEMENT] (state, {vin, rangee, colonne}) {
-    vin.emplacements.push({rangee, colonne})
-/*    // Recherche du vin
-    var lastIndex = state.items.lastIndexOf(vin)
-    if (lastIndex !== -1) {
-      // Ajout du champ s'il n'est
-      if (vin.emplacement === undefined) {
-        vin = {...vin, emplacement: [{rangee, colonne}]}
-        state.items[lastIndex] = vin
-      } else {
-        state.items[lastIndex].emplacement.push({rangee, colonne})
-      }
-    }
-*/
   },
   [types.SUPPRIMER_EMPLACEMENT] (state, {vin, emplacement}) {
     // Recherche du vin
