@@ -1,0 +1,27 @@
+[
+  {
+    "region": "Alsace",
+    "appellation": [
+      "Alsace",
+      "Alsace grand cru",
+      "Crémant d'alsace"
+    ]
+  },
+  {
+    "region": "Beaujolais",
+    "appellation": [
+      "Beaujolais",
+      "Brouilly",
+      "Chiroubles"
+    ]
+  },
+  {
+    "region": "Bordeaux",
+    "appellation": [
+      "Côtes de Bordeaux",
+      "Blaye",
+      "Bordeaux supérieur",
+      "Canon Fronsac"
+    ]
+  }
+]

@@ -2,34 +2,51 @@
   <div class="editVin">
     <div class="container">
       <form v-on:submit="submitForm">
-        <b-input-group left="Nom">
-          <b-form-input id="nom" v-model="vin.nom" type="text" placeholder="Nom du vin" :state="this.vin.nom.length>0?'success':'error'"></b-form-input>
-          <small v-if="error.nom.length > 0">{{ error.nom }}</small>
-        </b-input-group>
-        <b-input-group left="Année">
-          <b-form-input id="annee" v-model="vin.annee" type="number" number placeholder="Année"></b-form-input>
-          <small v-if="error.annee.length > 0">{{ error.annee }}</small>
-        </b-input-group>
         <div class="form-group">
-          <label for="estimation">Estimation</label>
-          <b-form-input id="estimation" v-model="vin.estimation" type="number" number placeholder="Estimation (€)"></b-form-input>
-          <!-- <small v-if="error.estimation.length > 0">{{ error.estimation }}</small> -->
+          <b-input-group left="Nom">
+            <b-form-input id="nom" v-model="vin.nom" type="text" placeholder="Nom du vin" :state="this.vin.nom.length>0?'success':'error'"></b-form-input>
+            <small v-if="error.nom.length > 0">{{ error.nom }}</small>
+          </b-input-group>
         </div>
         <div class="form-group">
-          <label for="note">Note</label>
-          <b-form-input id="note" v-model="vin.note" type="number" number placeholder="Note"></b-form-input>
-          <!-- <small v-if="error.note.length > 0">{{ error.estimation }}</small> -->
+          <b-input-group left="Année">
+            <b-form-input id="annee" v-model="vin.annee" type="number" number placeholder="Année"></b-form-input>
+            <small v-if="error.annee.length > 0">{{ error.annee }}</small>
+          </b-input-group>
         </div>
         <div class="form-group">
-          <label for="cepage">Cepage</label>
-          <b-form-input id="cepage" v-model="vin.cepage" type="text" placeholder="Cépage"></b-form-input>
-          <!-- <small v-if="error.cepage.length > 0">{{ error.estimation }}</small> -->
+          <b-input-group left="Estimation" right="€">
+            <b-form-input id="estimation" v-model="vin.estimation" type="number" number placeholder="Estimation"></b-form-input>
+            <!-- <small v-if="error.estimation.length > 0">{{ error.estimation }}</small> -->
+          </b-input-group>
         </div>
         <div class="form-group">
-          <label for="debutBoire">Boire entre </label>
-          <b-form-input id="debutBoire" v-model="vin.debutBoire" type="number" number placeholder="Année"></b-form-input>
-          <b-form-input id="finBoire" v-model="vin.finBoire" type="number" number placeholder="Année"></b-form-input>
-          <!-- <small v-if="error.cepage.length > 0">{{ error.estimation }}</small> -->
+          <b-input-group left="Note">
+            <b-form-input id="note" v-model="vin.note" type="number" number placeholder="Note"></b-form-input>
+            <!-- <small v-if="error.note.length > 0">{{ error.estimation }}</small> -->
+          </b-input-group>
+        </div>
+        <div class="form-group">
+          <b-input-group left="Région">
+            <b-form-select id="region" :options="listeRegions" v-model="regionSelectionnee" @input="updateAppellations" placeholder="Région"></b-form-select>
+            <!-- <small v-if="error.cepage.length > 0">{{ error.estimation }}</small> -->
+          </b-input-group>
+        </div>
+        <div class="form-group">
+          <b-input-group left="Cépage">
+            <b-form-select id="cepage" v-model="vin.cepage" :options="listeAppellations" placeholder="Cépage"></b-form-select>
+            <!-- <small v-if="error.cepage.length > 0">{{ error.estimation }}</small> -->
+          </b-input-group>
+        </div>
+        <div class="form-group row">
+          <div class="col-auto">
+            <label for="debutBoire">Boire entre </label>
+            <b-form-input id="debutBoire" v-model="vin.debutBoire" type="number" number placeholder="Année"></b-form-input>
+          </div>
+          <div class="col-auto">
+            <b-form-input id="finBoire" v-model="vin.finBoire" type="number" number placeholder="Année"></b-form-input>
+            <!-- <small v-if="error.cepage.length > 0">{{ error.estimation }}</small> -->
+          </div>
         </div>
         <b-button type="submit" variant="primary">Valider</b-button>
         <b-button variant="secondary" href="/">Annuler</b-button>
@@ -40,6 +57,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import liste from '@/ref/cepage.json'
 
 export default {
   name: 'editVin',
@@ -66,7 +84,10 @@ export default {
       error: {
         nom: '',
         annee: ''
-      }
+      },
+      listeRegions: liste.map(elem => elem.region),
+      listeAppellations: [],
+      regionSelectionnee: null
     }
   },
   watch: {
@@ -102,6 +123,14 @@ export default {
       }, err => {
         console.log(err)
       })
+    },
+    updateAppellations: function () {
+      var l = liste.filter(elem => this.regionSelectionnee === elem.region)
+      if (l.length > 0) {
+        this.listeAppellations = l[0].appellation
+      } else {
+        this.listeAppellations = []
+      }
     }
   }
 }
