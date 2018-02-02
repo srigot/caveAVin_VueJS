@@ -55,46 +55,4 @@ describe('store/mutations', () => {
       expect(state.filterAll).to.equal(false)
     })
   })
-
-  describe(types.AJOUTER_EMPLACEMENT, () => {
-    it('should add emplacement to vin with empty property emplacement', () => {
-      const state = { items: [jdd.v1, jdd.v3] }
-      mutations[types.AJOUTER_EMPLACEMENT](state, {vin: jdd.v3, rangee: 'A', colonne: '3'})
-      expect(state.items.length).to.equal(2)
-      expect(state.items[1].emplacement.length).to.equal(1)
-      expect(state.items[1].emplacement[0].rangee).to.equal('A')
-      expect(state.items[1].emplacement[0].colonne).to.equal('3')
-    })
-    it('should add emplacement to vin with filled property emplacement', () => {
-      const state = { items: [jdd.v3, jdd.v4] }
-      mutations[types.AJOUTER_EMPLACEMENT](state, {vin: jdd.v4, rangee: 'A', colonne: '3'})
-      expect(state.items.length).to.equal(2)
-      expect(state.items[1].emplacement.length).to.equal(2)
-      expect(state.items[1].emplacement[1].rangee).to.equal('A')
-      expect(state.items[1].emplacement[1].colonne).to.equal('3')
-    })
-    it('should add emplacement to vin without property emplacement', () => {
-      const state = { items: [jdd.v1, jdd.v2] }
-      mutations[types.AJOUTER_EMPLACEMENT](state, {vin: jdd.v2, rangee: 'A', colonne: '3'})
-      expect(state.items.length).to.equal(2)
-      expect(state.items[1].emplacement.length).to.equal(1)
-      expect(state.items[1].emplacement[0].rangee).to.equal('A')
-      expect(state.items[1].emplacement[0].colonne).to.equal('3')
-    })
-  })
-
-  describe(types.SUPPRIMER_EMPLACEMENT, () => {
-    it('shoudn\'t remove inexisting emplacement', () => {
-      const state = { items: [jdd.v3, jdd.v5] }
-      mutations[types.SUPPRIMER_EMPLACEMENT](state, {vin: jdd.v5, emplacement: jdd.eA2})
-      expect(state.items.length).to.equal(2)
-      expect(state.items[1].emplacement.length).to.equal(2)
-    })
-    it('shoud remove existing emplacement', () => {
-      const state = { items: [jdd.v3, jdd.v5] }
-      mutations[types.SUPPRIMER_EMPLACEMENT](state, {vin: jdd.v5, emplacement: jdd.eB5})
-      expect(state.items.length).to.equal(2)
-      expect(state.items[1].emplacement.length).to.equal(1)
-    })
-  })
 })

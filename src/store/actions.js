@@ -59,8 +59,8 @@ export default {
   },
   supprimerEmplacement ({commit}, {vin, emplacement}) {
     return new Promise((resolve, reject) => {
-      commit(types.SUPPRIMER_EMPLACEMENT, {vin, emplacement})
-      backend.supprimerEmplacement(vin, emplacement).then(result => {
+      backend.deleteEmplacement(vin, emplacement).then(result => {
+        commit(types.UPDATE_VIN, result.body.vin)
         resolve()
       }, err => {
         // TODO A GERER

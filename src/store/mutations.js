@@ -21,17 +21,5 @@ export default {
   },
   [types.TOOGLE_FILTREALL] (state) {
     state.filterAll = !state.filterAll
-  },
-  [types.SUPPRIMER_EMPLACEMENT] (state, {vin, emplacement}) {
-    // Recherche du vin
-    var lastIndex = state.items.lastIndexOf(vin)
-    if (lastIndex !== -1) {
-      if (state.items[lastIndex].emplacements !== undefined) {
-        var lastIndexEmplacement = state.items[lastIndex].emplacements.lastIndexOf(emplacement)
-        if (lastIndexEmplacement !== -1) {
-          state.items[lastIndex].emplacements.splice(lastIndexEmplacement, 1)
-        }
-      }
-    }
   }
 }

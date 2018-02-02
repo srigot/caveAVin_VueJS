@@ -29,7 +29,7 @@ export default {
     return new Promise((resolve, reject) => {
       // Appel de l'API
       Vue.http.post(URL + 'vins', vin).then(response => {
-        resolve(response)
+        resolve(response.body.vin)
       }, err => {
         reject(err)
       })
@@ -47,6 +47,15 @@ export default {
   addEmplacement (vin, emplacement) {
     return new Promise((resolve, reject) => {
       Vue.http.post(URL + 'vin/' + vin._id + '/emplacement', emplacement).then(response => {
+        resolve(response)
+      }, err => {
+        reject(err)
+      })
+    })
+  },
+  deleteEmplacement (vin, emplacement) {
+    return new Promise((resolve, reject) => {
+      Vue.http.delete(URL + 'vin/' + vin._id + '/emplacement', emplacement).then(response => {
         resolve(response)
       }, err => {
         reject(err)

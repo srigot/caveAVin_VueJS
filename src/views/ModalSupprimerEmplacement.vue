@@ -1,7 +1,7 @@
 <template>
   <div class="modalSupprimerEmplacement">
     <b-modal id="modalSupprEmpl" title="Supprimer un emplacement" @ok="submit" @shown="init">
-      <label>Vin : {{ this.item.nom }}</label>
+      <label>Vin : {{ getNom }}</label>
       <form @submit.stop.prevent="submit">
         <b-form-select type="text" v-model="selected" :options="options"/>
       </form>
@@ -19,9 +19,14 @@ export default {
       options: []
     }
   },
+  computed: {
+    getNom () {
+      return (this.item != null) ? this.item.nom : ''
+    }
+  },
   methods: {
     init () {
-      this.options = this.item.emplacement.map(it => { return { text: it.rangee + ';' + it.colonne, value: it } })
+      this.options = this.item.emplacements.map(it => { return { text: it.rangee + ';' + it.colonne, value: it } })
       if (this.options.length > 0) {
         this.selected = this.options.value
       }

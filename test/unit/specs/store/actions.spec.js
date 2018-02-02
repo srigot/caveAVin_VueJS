@@ -111,19 +111,19 @@ describe('store/actions', () => {
   describe('ajouterEmplacement', () => {
     let mockPromiseCall
     beforeEach(function () {
-      mockPromiseCall = sinon.stub(backend, 'updateVin').returnsPromise()
+      mockPromiseCall = sinon.stub(backend, 'addEmplacement').returnsPromise()
     })
     afterEach(function () {
-      backend.updateVin.restore()
+      backend.addEmplacement.restore()
     })
     it('should call backend', () => {
-      actions.ajouterEmplacement({commit: mockCommit}, {vin: jdd.v123, rangee: 'A', colonne: '3'})
-      expect(backend.updateVin).to.have.been.calledWith(jdd.v123)
+      actions.ajouterEmplacement({commit: mockCommit}, {vin: jdd.v123, emplacement: jdd.eC5})
+      expect(backend.addEmplacement).to.have.been.calledWith(jdd.v123, jdd.eC5)
     })
     it('should update vin if result ok', () => {
-      mockPromiseCall.resolves()
-      actions.ajouterEmplacement({commit: mockCommit}, {vin: jdd.v123, rangee: 'A', colonne: '3'})
-      expect(mockCommit).to.have.been.calledWith(types.AJOUTER_EMPLACEMENT, {vin: jdd.v123, rangee: 'A', colonne: '3'})
+      mockPromiseCall.resolves({body: {vin: jdd.v123}})
+      actions.ajouterEmplacement({commit: mockCommit}, {vin: jdd.v123, emplacement: jdd.eC5})
+      expect(mockCommit).to.have.been.calledWith(types.UPDATE_VIN, jdd.v123)
     })
     it('need to revert if result ko', () => {
       // TODO
