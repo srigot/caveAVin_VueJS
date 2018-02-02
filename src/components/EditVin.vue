@@ -40,12 +40,15 @@
         </div>
         <div class="form-group row">
           <div class="col-auto">
-            <label for="debutBoire">Boire entre </label>
-            <b-form-input id="debutBoire" v-model="vin.debutBoire" type="number" number placeholder="Année"></b-form-input>
+            <b-input-group left="Boire entre">
+              <b-form-input id="debutBoire" v-model="vin.debutBoire" type="number" number placeholder="Année"></b-form-input>
+            </b-input-group>
           </div>
           <div class="col-auto">
-            <b-form-input id="finBoire" v-model="vin.finBoire" type="number" number placeholder="Année"></b-form-input>
-            <!-- <small v-if="error.cepage.length > 0">{{ error.estimation }}</small> -->
+            <b-input-group left="et">
+              <b-form-input id="finBoire" v-model="vin.finBoire" type="number" number placeholder="Année"></b-form-input>
+              <!-- <small v-if="error.cepage.length > 0">{{ error.estimation }}</small> -->
+            </b-input-group>
           </div>
         </div>
         <b-button type="submit" variant="primary">Valider</b-button>
