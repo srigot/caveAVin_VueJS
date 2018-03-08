@@ -116,14 +116,12 @@ export default {
   methods: {
     ...mapActions(['ajouterVin']),
     okAjout () {
-      this.$router.push('/v')
+      this.$router.push('/')
     },
     submitForm: function (event) {
       event.preventDefault()
       var v = this.vin
-      this.ajouterVin(v).then(function () {
-        this.okAjout()
-      }, err => {
+      this.ajouterVin(v).then(this.okAjout, err => {
         console.log(err)
       })
     },
