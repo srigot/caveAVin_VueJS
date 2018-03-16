@@ -14,10 +14,10 @@ export default {
     }
   },
   [types.UPDATE_VIN] (state, v) {
-    var index = state.items.findIndex(item => {
-      return (item._id === v._id)
-    })
-    state.items.splice(index, 1, v)
+    var index = state.items.map(item => item._id).lastIndexOf(v._id)
+    if (index !== -1) {
+      state.items.splice(index, 1, v)
+    }
   },
   [types.TOOGLE_FILTREALL] (state) {
     state.filterAll = !state.filterAll
