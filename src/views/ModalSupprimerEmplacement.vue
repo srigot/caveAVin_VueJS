@@ -27,9 +27,7 @@ export default {
   methods: {
     init () {
       this.options = this.item.emplacements.map(it => { return { text: it.rangee + ';' + it.colonne, value: it } })
-      if (this.options.length > 0) {
-        this.selected = this.options.value
-      }
+      this.selected = null
     },
     submit (e) {
       if (!this.selected) {

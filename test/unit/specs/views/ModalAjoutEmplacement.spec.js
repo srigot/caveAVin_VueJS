@@ -44,8 +44,6 @@ describe('ModalAjoutEmplacement.vue', () => {
       sinon.spy(vm, '$emit')
     })
     it('doit emettre un evenement si OK', () => {
-      e = {cancel: sinon.stub()}
-
       vm.rangee = 'A'
       vm.colonne = '2'
       vm.submit(e)
