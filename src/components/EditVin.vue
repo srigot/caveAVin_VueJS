@@ -94,7 +94,7 @@ export default {
     }
   },
   watch: {
-    nom: function (val) {
+    'vin.nom': function (val) {
       if (val.length > 0) {
         this.error.nom = ''
         return true
@@ -103,7 +103,7 @@ export default {
         return false
       }
     },
-    annee: function (val) {
+    'vin.annee': function (val) {
       if (val > 1900 && val < 3000) {
         this.error.annee = ''
         return true

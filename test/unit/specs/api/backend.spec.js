@@ -148,8 +148,32 @@ describe('api/backend', () => {
   })
 
   describe('deleteEmplacement', () => {
-    it.skip('TO IMPLEMENT ', () => {
-      // TODO
+    let mockPromiseCall
+    beforeEach(() => {
+      mockPromiseCall = sinon.stub(Vue.http, 'delete').returnsPromise()
+    })
+    afterEach(() => {
+      Vue.http.delete.restore()
+    })
+
+    it('should call API DELETE ', () => {
+      backend.deleteEmplacement(jdd.v1, jdd.eA2)
+      expect(Vue.http.delete).to.have.been.calledWith(URL + 'vin/' + jdd.v1._id + '/emplacement')
+    })
+
+    it('should return promise if ok', () => {
+      mockPromiseCall.resolves()
+      return backend.deleteEmplacement(jdd.v1, jdd.eA2)
+    })
+
+    it('should return reject if ko', () => {
+      var expectedErr = new Error('Expected error')
+      mockPromiseCall.rejects(expectedErr)
+      return backend.deleteEmplacement(jdd.v1, jdd.eA2).then(result => {
+        throw new Error('was not supposed to succeed')
+      }, err => {
+        expect(err).to.equal(expectedErr)
+      })
     })
   })
 })

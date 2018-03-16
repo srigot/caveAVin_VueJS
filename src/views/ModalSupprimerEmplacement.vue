@@ -26,7 +26,11 @@ export default {
   },
   methods: {
     init () {
-      this.options = this.item.emplacements.map(it => { return { text: it.rangee + ';' + it.colonne, value: it } })
+      if (this.item !== null) {
+        this.options = this.item.emplacements.map(it => { return { text: it.rangee + ';' + it.colonne, value: it } })
+      } else {
+        this.options = []
+      }
       this.selected = null
     },
     submit (e) {
