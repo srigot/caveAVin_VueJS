@@ -1,18 +1,16 @@
 import Vue from 'vue'
 import CardVin from '@/components/CardVin'
 import BootstrapVue from 'bootstrap-vue'
+import * as jdd from './mockJDD.js'
 
 Vue.use(BootstrapVue)
-
-const v1 = {_id: 1, nom: 'test 1', emplacement: [{rangee: 'A', colonne: '2'}]}
-const v1Vide = {_id: 1, nom: 'test 1', emplacement: []}
 
 describe('CardVin.vue', () => {
   let vm
 
   beforeEach(function () {
     const Constructor = Vue.extend(CardVin)
-    vm = new Constructor({propsData: {item: v1}}).$mount()
+    vm = new Constructor({propsData: {item: jdd.v5}}).$mount()
   })
 
   it('should check the name of my vue', () => {
@@ -20,7 +18,7 @@ describe('CardVin.vue', () => {
   })
 
   it('should have item prop', () => {
-    expect(vm.item).to.equal(v1)
+    expect(vm.item).to.equal(jdd.v5)
   })
 
   it('should call emit event on click on ajouterEmplacement', done => {
@@ -44,7 +42,7 @@ describe('CardVin.vue', () => {
   })
   it('shouldn\'t call emit event on click on supprimerEmplacement when nbBouteilles = 0', () => {
     const Constructor = Vue.extend(CardVin)
-    vm = new Constructor({propsData: {item: v1Vide}}).$mount()
+    vm = new Constructor({propsData: {item: jdd.v1}}).$mount()
     const button = vm.$el.querySelector('.btnRemoveEmpl')
 
     button.click()

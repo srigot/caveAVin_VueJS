@@ -1,11 +1,13 @@
 <template>
   <div class="listeVins container">
     <b-alert variant="danger" dismissible :show="showAlerte">Erreur lors de la mise a jour : {{msgAlerte}}</b-alert>
-    <cardVin
-      v-for="item in listeFiltree" :key="item._id" :item="item"
-      v-on:eventAjouterEmplacement="showModalAjouterEmpl"
-      v-on:eventSupprimerEmplacement="showModalSupprEmpl">
-    </cardVin>
+    <b-list-group>
+      <cardVin
+        v-for="item in listeFiltree" :key="item._id" :item="item"
+        v-on:eventAjouterEmplacement="showModalAjouterEmpl"
+        v-on:eventSupprimerEmplacement="showModalSupprEmpl">
+      </cardVin>
+    </b-list-group>
 
       Nb = {{ listeFiltree.length }}
 
