@@ -21,6 +21,10 @@ describe('CardVin.vue', () => {
     expect(vm.item).to.equal(jdd.v5)
   })
 
+  it('doit afficher le nom du vin et l\'annee', () => {
+    expect(vm.$el.querySelector('.nom').textContent).to.equal(jdd.v5.annee + ' - ' + jdd.v5.nom)
+  })
+
   it('should call emit event on click on ajouterEmplacement', done => {
     const button = vm.$el.querySelector('.btnAddEmpl')
 

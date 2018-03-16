@@ -9,7 +9,7 @@ export const v1Updated = {_id: 1, nom: 'TEST 1 UPDATED', annee: 2011, emplacemen
 export const v2 = {_id: 2, nom: 'TEST 2', annee: 2012, emplacements: []}
 export const v3 = {_id: 3, nom: 'test 3', emplacements: []}
 export const v4 = {_id: 4, nom: 'test 4', emplacements: [eA2]}
-export const v5 = {_id: 5, nom: 'test 5', emplacements: [eC5, eB5]}
+export const v5 = {_id: 5, nom: 'test 5', annee: 2000, emplacements: [eC5, eB5]}
 
 export const vSansId = {nom: 'test'}
 export const v123 = {_id: 123, nom: 'test'}

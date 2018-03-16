@@ -3,7 +3,7 @@
     href="#"
     class="cardVin flex-column align-items-start">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{ item.annee }} - {{ item.nom }}</h5>
+      <h5 class="mb-1 nom">{{ item.annee }} - {{ item.nom }}</h5>
       <b-button-group size="sm">
         <b-btn class="btnAddEmpl" v-on:click="eventAjouterEmplacement">+</b-btn>
         <b-btn class="btnRemoveEmpl" v-on:click="eventSupprimerEmplacement" v-bind:class="{ disabled: item.emplacements === undefined || item.emplacements.length==0 }">-</b-btn>

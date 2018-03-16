@@ -4,15 +4,15 @@
       <form v-on:submit="submitForm">
         <div class="form-group">
           <b-input-group left="Nom">
-            <b-form-input id="nom" v-model="vin.nom" type="text" placeholder="Nom du vin" :state="this.vin.nom.length>0?'success':'error'"></b-form-input>
-            <small v-if="error.nom.length > 0">{{ error.nom }}</small>
+            <b-form-input id="nom" v-model="vin.nom" type="text" placeholder="Nom du vin"></b-form-input>
           </b-input-group>
+          <small v-if="error.nom.length > 0">{{ error.nom }}</small>
         </div>
         <div class="form-group">
           <b-input-group left="Année">
             <b-form-input id="annee" v-model="vin.annee" type="number" number placeholder="Année"></b-form-input>
-            <small v-if="error.annee.length > 0">{{ error.annee }}</small>
           </b-input-group>
+          <small v-if="error.annee.length > 0">{{ error.annee }}</small>
         </div>
         <div class="form-group">
           <b-input-group left="Estimation" right="€">
