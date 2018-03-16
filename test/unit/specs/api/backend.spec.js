@@ -146,4 +146,10 @@ describe('api/backend', () => {
       })
     })
   })
+
+  describe('deleteEmplacement', () => {
+    it.skip('TO IMPLEMENT ', () => {
+      // TODO
+    })
+  })
 })
