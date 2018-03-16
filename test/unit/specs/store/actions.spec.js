@@ -101,6 +101,36 @@ describe('store/actions', () => {
       })
     })
   })
+
+  describe('updateVin', () => {
+    let mockPromiseCall
+    beforeEach(function () {
+      mockPromiseCall = sinon.stub(backend, 'updateVin').returnsPromise()
+    })
+    afterEach(function () {
+      backend.updateVin.restore()
+    })
+    it('should call backend', () => {
+      actions.updateVin({commit: mockCommit}, jdd.v123)
+      expect(backend.updateVin).to.have.been.calledWith(jdd.v123)
+    })
+
+    it('should update item from list if result ok', () => {
+      mockPromiseCall.resolves(jdd.v123)
+      actions.updateVin({commit: mockCommit}, jdd.v123)
+      expect(mockCommit).to.have.been.calledWith(types.UPDATE_VIN, jdd.v123)
+    })
+    it('should\'nt update item from list if result ko', () => {
+      var expectedErr = new Error('Expected error')
+      mockPromiseCall.rejects(expectedErr)
+      return actions.updateVin({commit: mockCommit}, jdd.v123).then(result => {
+        throw new Error('was not supposed to succeed')
+      }, err => {
+        expect(err).to.equal(expectedErr)
+        expect(mockCommit).to.not.have.been.called
+      })
+    })
+  })
   describe('toogleFiltreAll', () => {
     it('should call mutations', () => {
       actions.toogleFiltreAll({commit: mockCommit})
@@ -126,7 +156,43 @@ describe('store/actions', () => {
       expect(mockCommit).to.have.been.calledWith(types.UPDATE_VIN, jdd.v123)
     })
     it('need to revert if result ko', () => {
-      // TODO
+      var expectedErr = new Error('Expected error')
+      mockPromiseCall.rejects(expectedErr)
+      return actions.ajouterEmplacement({commit: mockCommit}, {vin: jdd.v123, emplacement: jdd.eC5}).then(result => {
+        throw new Error('was not supposed to succeed')
+      }, err => {
+        expect(err).to.equal(expectedErr)
+        expect(mockCommit).to.not.have.been.called
+      })
+    })
+  })
+
+  describe('supprimerEmplacement', () => {
+    let mockPromiseCall
+    beforeEach(function () {
+      mockPromiseCall = sinon.stub(backend, 'deleteEmplacement').returnsPromise()
+    })
+    afterEach(function () {
+      backend.deleteEmplacement.restore()
+    })
+    it('should call backend', () => {
+      actions.supprimerEmplacement({commit: mockCommit}, {vin: jdd.v123, emplacement: jdd.eC5})
+      expect(backend.deleteEmplacement).to.have.been.calledWith(jdd.v123, jdd.eC5)
+    })
+    it('should update vin if result ok', () => {
+      mockPromiseCall.resolves({body: {vin: jdd.v123}})
+      actions.supprimerEmplacement({commit: mockCommit}, {vin: jdd.v123, emplacement: jdd.eC5})
+      expect(mockCommit).to.have.been.calledWith(types.UPDATE_VIN, jdd.v123)
+    })
+    it('need to revert if result ko', () => {
+      var expectedErr = new Error('Expected error')
+      mockPromiseCall.rejects(expectedErr)
+      return actions.supprimerEmplacement({commit: mockCommit}, {vin: jdd.v123, emplacement: jdd.eC5}).then(result => {
+        throw new Error('was not supposed to succeed')
+      }, err => {
+        expect(err).to.equal(expectedErr)
+        expect(mockCommit).to.not.have.been.called
+      })
     })
   })
 })

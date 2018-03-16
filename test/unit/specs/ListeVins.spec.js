@@ -41,6 +41,6 @@ describe('ListeVins.vue', () => {
     expect(vm.listeFiltree.length).to.equal(2)
   })
   it('should show list of cards', () => {
-// FIXME    expect(vm.$el.querySelector('.listeVins table tbody tr td').textContent).to.equal(v1.nom)
+    expect(vm.$el.querySelectorAll('.cardVin').length).to.equal(2)
   })
 })

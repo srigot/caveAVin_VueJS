@@ -18,6 +18,22 @@ describe('store/mutations', () => {
     })
   })
 
+  describe(types.UPDATE_VIN, () => {
+    it('shoud update vin find in list', () => {
+      const state = { items: [jdd.v1, jdd.v2] }
+      mutations[types.UPDATE_VIN](state, jdd.v1Updated)
+      expect(state.items.length).to.equal(2)
+      expect(state.items[0]).to.equal(jdd.v1Updated)
+    })
+    it('do nothing if vin not found', () => {
+      const state = { items: [jdd.v1, jdd.v2] }
+      mutations[types.UPDATE_VIN](state, jdd.v3)
+      expect(state.items.length).to.equal(2)
+      expect(state.items[0]).to.equal(jdd.v1)
+      expect(state.items[1]).to.equal(jdd.v2)
+    })
+  })
+
   describe(types.INIT_LISTE, () => {
     it('should set liste with parameter', () => {
       const state = { items: [] }
