@@ -3,7 +3,7 @@ import ListeVins from '@/components/ListeVins'
 import VueResource from 'vue-resource'
 import BootstrapVue from 'bootstrap-vue'
 import Vuex from 'vuex'
-import * as jdd from './mockJDD.js'
+import * as jdd from '../mockJDD.js'
 
 Vue.use(BootstrapVue)
 Vue.use(VueResource)

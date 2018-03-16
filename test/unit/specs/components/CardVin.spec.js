@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import CardVin from '@/components/CardVin'
 import BootstrapVue from 'bootstrap-vue'
-import * as jdd from './mockJDD.js'
+import * as jdd from '../mockJDD.js'
 
 Vue.use(BootstrapVue)
 
