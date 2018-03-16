@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: 'modalAjoutEmplacement',
+  name: 'modalSupprimerEmplacement',
   props: [ 'item' ],
   data () {
     return {
